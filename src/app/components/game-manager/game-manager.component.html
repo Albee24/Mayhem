@@ -1,4 +1,4 @@
-<p>Playing {{ gameService.currentGame.name }}</p>
+<h3>Game Name: {{ gameService.currentGame.name }}</h3>
 <button 
     mat-button (click)="startGame()" 
     *ngIf="gameService.currentGame.state == 'P'"
@@ -6,8 +6,14 @@
     Start Game
 </button>
 <div class="player-hand" *ngIf="gameService.currentGame.state != 'P'">
-    <div class="card">
+    <div class="deck-type-card">
+        <img 
+        [src]="getCardImagePath(playerDeckType)" 
+            alt="{{ playerDeckType }}" 
+            class="card-thumbnail"
+        />
         <h3>{{ playerDeckType }}</h3>
+        <h5>"{{ playerDeckDescription }}"</h5>
     </div>
     <div 
     class="card" 
@@ -22,11 +28,16 @@
     }"
     (click)="selectCard(i)"
     >
+    <img 
+    [src]="getCardImagePath(card.name)" 
+        alt="{{ card.name }}" 
+        class="card-thumbnail"
+    />
         {{ card.name }}
         <br/>
-        ({{ card.type }})
-        <br/>
-        {{ card.qty }}
+        <span *ngIf="!card.type.startsWith('M')">
+            <i>{{ card.type }} ({{ card.qty }})</i>
+        </span>
         <button 
             *ngIf="selectedCardIndex === i && numActions > 0 && isPlayerTurn() && gameService.currentGame.state === 'IP'" 
             class="play-button" 

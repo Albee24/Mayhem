@@ -13,7 +13,6 @@
         <input matInput formControlName="password" type="password" />
         <mat-error *ngIf="loginForm.get('password')!.hasError('required')">Password is required</mat-error>
       </mat-form-field>
-      <a routerLink="/forgot-password" class="link-style">Forgot Password?</a>
       <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
         Log In
       </button>

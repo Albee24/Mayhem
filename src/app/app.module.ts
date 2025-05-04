@@ -7,10 +7,8 @@ import { firebaseConfig } from '../environments/environment';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { SignInComponent } from './components/sign-in/sign-in.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
-import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -45,9 +43,7 @@ import { CardAnimationDialogComponent } from './components/card-animation-dialog
     AppComponent, 
     SignInComponent, 
     SignUpComponent, 
-    ForgotPasswordComponent, 
     DashboardComponent, 
-    VerifyEmailComponent,
     ConfirmDialogComponent,
     GameManagerComponent,
     PlayerSelectionDialogComponent,
@@ -65,9 +61,7 @@ import { CardAnimationDialogComponent } from './components/card-animation-dialog
       { path: 'sign-in', component: SignInComponent },
       { path: 'sign-up', component: SignUpComponent },
       { path: 'dashboard', component: DashboardComponent, canActivate: [authGuard] },
-      { path: 'game', component: GameManagerComponent, canActivate: [authGuard] },
-      { path: 'forgot-password', component: ForgotPasswordComponent },
-      { path: 'verify-email-address', component: VerifyEmailComponent }, 
+      { path: 'game', component: GameManagerComponent, canActivate: [authGuard] }
       ]),
     ReactiveFormsModule,
     AngularFireModule.initializeApp(firebaseConfig),  // Initialize Firebase with config

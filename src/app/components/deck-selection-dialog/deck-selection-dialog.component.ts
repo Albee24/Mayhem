@@ -9,6 +9,10 @@ import { Deck } from '../../shared/models/deck';
 })
 export class DeckSelectionDialogComponent {
   selectedDeck: Deck | undefined;
+  randomDeck: Deck = {
+    id: 'random', name: 'Random', description: 'Select a random deck',
+    cards: []
+  };
 
   constructor(
     public dialogRef: MatDialogRef<DeckSelectionDialogComponent>,

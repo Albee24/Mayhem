@@ -4,6 +4,9 @@
     <mat-radio-button *ngFor="let deck of data.decks" [value]="deck">
       {{ deck.name }}
     </mat-radio-button>
+    <mat-radio-button [value]="randomDeck">
+      Random
+    </mat-radio-button>
   </mat-radio-group>
 </div>
 <div mat-dialog-actions>

@@ -26,6 +26,7 @@ export class GameManagerComponent implements OnInit {
   lastProcessedTurn: number | null = null;
   playerDeckType: string | undefined;
   CARD_TYPES: any = CARD_TYPES
+  playerDeckDescription: string = '';
 
   public constructor(
     public authService: AuthService,
@@ -143,6 +144,12 @@ export class GameManagerComponent implements OnInit {
     console.log('Initializing game...');
     this.playerDeckType = this.gameService.currentGame?.players?.find((player: Player) => player.displayName === this.authService.userData?.displayName)?.deck;
     if (this.playerDeckType) {
+     this.deckService.getDecks().subscribe((decks) => {
+        const deck = decks.find(deck => deck.name === this.playerDeckType);
+        if (deck) {
+          this.playerDeckDescription = deck.description;
+        }
+      });
       await this.createDrawPile(this.playerDeckType);
       console.log(this.drawPile);
       this.drawCard(3);
@@ -511,6 +518,15 @@ export class GameManagerComponent implements OnInit {
     if (currentPlayer && currentPlayer.shields >= 100000) { //remove diving shield
       currentPlayer.shields = currentPlayer.shields - 100000;
     }
+  }
+
+  getCardImagePath(cardName: string | undefined) {
+    if (!cardName) {
+      return '/default-card.png';
+    }
+    const sanitizedCardName = cardName.replace(/['’]/g, '');
+    console.log('getCardImagePath', sanitizedCardName);
+    return `/cards/${encodeURIComponent(sanitizedCardName)}.png`;
   }
 
 }

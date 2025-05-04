@@ -52,6 +52,10 @@ export class DashboardComponent implements OnInit {
   joinGame(game: Game): void {
     this.openDeckSelectionDialog().then((selectedDeck) => {
       if (selectedDeck) {
+        if (selectedDeck.name === 'Random') {
+          const randomIndex = Math.floor(Math.random() * this.decks.length);
+          selectedDeck = this.decks[randomIndex];
+        }
         game.players?.push({
           displayName: this.user?.displayName || 'Anonymous',
           deck: selectedDeck.name,
@@ -73,14 +77,18 @@ export class DashboardComponent implements OnInit {
       if (gameName) {
         this.openDeckSelectionDialog().then((selectedDeck) => {
           if (selectedDeck && this.user) {
+            if (selectedDeck.name === 'Random') {
+              const randomIndex = Math.floor(Math.random() * this.decks.length);
+              selectedDeck = this.decks[randomIndex];
+            }
             this.players.push({
               displayName: this.user.displayName,
               deck: selectedDeck.name,
-              hp: 8,
+              hp: 10,
               shields: 0,
             });
             const game: Game = {
-              name: gameName, // Use the entered game name
+              name: gameName,
               players: this.players,
               state: 'P',
             };

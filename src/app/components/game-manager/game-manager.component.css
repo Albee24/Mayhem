@@ -56,7 +56,7 @@
     border: 1px solid #ccc;
     border-radius: 8px;
     padding: 1rem;
-    width: 200px;
+    width: 75px;
     text-align: center;
     background-color: #f9f9f9;
 }
@@ -144,4 +144,53 @@
 
 .card-mighty:hover {
     background-color: #ffe082; /* Slightly darker gold */
+}
+
+.card-thumbnail {
+    width: 100px;
+    height: auto;
+    margin-bottom: 8px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.deck-type-card {
+    border: 2px solid #ff9800; /* Orange border */
+    background-color: #fff3e0; /* Light orange background */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+    text-align: center;
+    margin-right: 30px; /* Increased spacing below the deck type card */
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+@media (max-width: 768px) {
+    .deck-type-card {
+        display: none;
+    }
+
+    .player-hand {
+        gap: 5px; /* Reduce gap between cards for smaller screens */
+    }
+
+    .card {
+        flex: 0 1 calc(20% - 5px); /* Adjust card width for smaller screens */
+        max-width: 80px; /* Reduce max width of cards */
+    }
+
+    .card-thumbnail {
+        width: 80px; /* Reduce thumbnail size */
+    }
+}
+
+.deck-type-card:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* Stronger shadow on hover */
+}
+
+.deck-type-card h3 {
+    color: #e65100; /* Dark orange text for the deck type */
+    font-weight: bold;
+    margin-top: 10px;
 }
