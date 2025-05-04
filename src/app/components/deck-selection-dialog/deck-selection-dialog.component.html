@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Select Your Deck</h1>
+<div mat-dialog-content>
+  <mat-radio-group [(ngModel)]="selectedDeck">
+    <mat-radio-button *ngFor="let deck of data.decks" [value]="deck">
+      {{ deck.name }}
+    </mat-radio-button>
+  </mat-radio-group>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="closeDialog()">Cancel</button>
+  <button mat-button [disabled]="!selectedDeck" (click)="confirmSelection()">Confirm</button>
+</div>

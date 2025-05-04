@@ -1,0 +1,79 @@
+<p>Playing {{ gameService.currentGame.name }}</p>
+<button 
+    mat-button (click)="startGame()" 
+    *ngIf="gameService.currentGame.state == 'P'"
+>
+    Start Game
+</button>
+<div class="player-hand" *ngIf="gameService.currentGame.state != 'P'">
+    <div class="card">
+        <h3>{{ playerDeckType }}</h3>
+    </div>
+    <div 
+    class="card" 
+    *ngFor="let card of playerHand; let i = index" 
+    [class.highlighted]="selectedCardIndex === i"
+    [ngClass]="{
+        'card-healing': card.type.toLowerCase() === 'heal',
+        'card-attack': card.type.toLowerCase() === 'attack',
+        'card-shield': card.type.toLowerCase() === 'shield',
+        'card-extra-action': card.type.toLowerCase() === 'extra-action',
+        'card-mighty': card.type.startsWith('M')
+    }"
+    (click)="selectCard(i)"
+    >
+        {{ card.name }}
+        <br/>
+        ({{ card.type }})
+        <br/>
+        {{ card.qty }}
+        <button 
+            *ngIf="selectedCardIndex === i && numActions > 0 && isPlayerTurn() && gameService.currentGame.state === 'IP'" 
+            class="play-button" 
+            (click)="playCard(card, $event)"
+        >
+            Play
+        </button>
+    </div>
+</div>
+
+<div class="player-summary" *ngIf="gameService.currentGame.players">
+    <div 
+        *ngFor="let player of gameService.currentGame.players; let i = index"
+        [class.current-turn]="i === gameService.currentGame.currentTurn"
+    >
+        <div 
+            class="player-card" 
+            *ngIf="player.displayName !== authService.userData?.displayName">
+            <h3>{{ player.displayName }}</h3>
+            <p>HP: {{ player.hp }}</p>
+            <p>Shields: {{ player.shields > 100 ? 'Invulnerable' : player.shields || 0 }}</p>
+            <p *ngIf="player.item">Item: {{ player.item || 'None' }}</p>
+            <p *ngIf="i === gameService.currentGame.currentTurn && gameService.currentGame.state === 'IP'" class="turn-indicator">
+                It's their turn!
+            </p>
+        </div>
+        <div 
+        class="player-card" 
+        *ngIf="player.displayName === authService.userData?.displayName">
+        <h3>You</h3>
+        <p>HP: {{ player.hp }}</p>
+        <p>Shields: {{ player.shields > 100 ? 'Invulnerable' : player.shields || 0 }}</p>
+        <p *ngIf="player.item">Item: {{ player.item || 'None' }}</p>
+        <p *ngIf="i === gameService.currentGame.currentTurn && gameService.currentGame.state === 'IP'" class="turn-indicator">
+            Your turn!
+        </p>
+    </div>
+    </div>
+</div>
+<div class="action-logs">
+    <h3>Action Logs</h3>
+    <ul>
+      <li *ngFor="let log of this.actionLogService.currentGameActionLogs">
+        <strong>{{ log.displayName }}</strong> 
+        {{ log.action }} 
+        <strong> {{ log.qty }} </strong> 
+        <span *ngIf="log.targetDisplayName">to <strong>{{ log.targetDisplayName }}</strong></span>
+      </li>
+    </ul>
+  </div>

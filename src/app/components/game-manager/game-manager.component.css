@@ -1,0 +1,147 @@
+.player-hand {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.card {
+    flex: 0 1 calc(10% - 10px); /* Adjusts card width for up to 10 cards */
+    max-width: 100px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card.highlighted {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.play-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    padding: 5px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.play-button:hover {
+    background-color: #0056b3;
+}
+
+.player-summary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.player-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 1rem;
+    width: 200px;
+    text-align: center;
+    background-color: #f9f9f9;
+}
+
+.player-card.current-turn {
+    border-color: #4caf50;
+    background-color: #e8f5e9;
+}
+
+.turn-indicator {
+    color: #4caf50;
+    font-weight: bold;
+}
+
+.action-logs {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .action-logs h3 {
+    margin-top: 0;
+  }
+  
+  .action-logs ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .action-logs li {
+    margin-bottom: 5px;
+  }
+
+  /* Healing cards (green) */
+.card-healing {
+    background-color: #e8f5e9; /* Light green */
+    border-color: #4caf50; /* Green */
+    color: #2e7d32; /* Dark green */
+}
+
+/* Attack cards (red) */
+.card-attack {
+    background-color: #ffebee; /* Light red */
+    border-color: #f44336; /* Red */
+    color: #b71c1c; /* Dark red */
+}
+
+/* Shield cards (purple) */
+.card-shield {
+    background-color: #f3e5f5; /* Light purple */
+    border-color: #9c27b0; /* Purple */
+    color: #6a1b9a; /* Dark purple */
+}
+/* Extra Action cards (purple) */
+.card-extra-action {
+    background-color: #e6e5f5; /* Light blue */
+    border-color: #2735b0; /* Blue */
+    color: #261b9a; /* Dark blue */
+}
+
+.card-extra-action:hover {
+    background-color: #c8cae6; /* Slightly darker blue */
+}
+
+.card-healing:hover {
+    background-color: #c8e6c9; /* Slightly darker green */
+}
+
+.card-attack:hover {
+    background-color: #ffcdd2; /* Slightly darker red */
+}
+
+.card-shield:hover {
+    background-color: #e1bee7; /* Slightly darker purple */
+}
+
+/* Mighty Powers cards (gold) */
+.card-mighty {
+    background-color: #fff8e1; /* Light gold */
+    border-color: #ffb300; /* Gold */
+    color: #ff6f00; /* Dark gold */
+}
+
+.card-mighty:hover {
+    background-color: #ffe082; /* Slightly darker gold */
+}

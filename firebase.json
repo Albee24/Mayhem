@@ -1,0 +1,17 @@
+{
+  "hosting": {
+    "site": "fightclub-a5b21",
+    "public": "dist/mayhem/browser",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+<header class="header">
+    <div>
+        <h2>Create a New Game</h2>
+        <button mat-raised-button color="primary" (click)="createGame()">
+            Create Game
+        </button>
+    </div>
+</header>
+<hr/>
+
+<div class="game-list" *ngIf="games.length > 0; else noGames">
+    <div class="game-card" *ngFor="let game of games">
+        <h3>{{ game.name }}</h3>
+        <p>Status: {{ game.state }}</p>
+        <button mat-button color="primary" (click)="joinGame(game)">Join</button>
+    </div>
+</div>
+
+<ng-template #noGames>
+    <p>No games available to join.</p>
+</ng-template>
